@@ -376,34 +376,23 @@ occurrence %<>% mutate(verbatimSRS = "Belgian Datum 1972")
 ### identifiedBy
 
 ```{r}
-occurrence %<>% mutate(identifiedBy = 'Province of West Flanders')
+occurrence %<>% mutate(dwc_identifiedBy = 'in te vullen')
 ```
 
 ### scientificName 
 
 ```{r}
-occurrence %<>% mutate(scientificName = case_when(kind_nl == 'Muskusrat' ~ "Ondatra zibethicus",
-                                   kind_nl == 'Bruine rat' ~ "Rattus norvegicus"
-                                       )
-                                )
+occurrence %<>% mutate(dwc_scientificName = scientificName)
 ```
 
 ### kingdom
 
 ```{r}
-occurrence %<>% mutate(kingdom = "Animalia")
+occurrence %<>% mutate(dwc_kingdom = "Animalia")
 ```
 
 ### scientificNameAuthorship
 
-```{r}
-occurrence %<>% mutate(scientificNameAuthorship = case_when(kind_nl == 'Muskusrat' ~ "Linnaeus, 1766",
-                                   kind_nl == 'Bruine rat' ~ "Berkenhout, 1759"
-                                       )
-                                )
-
-
-```
 
 ### taxonRank
 
@@ -422,46 +411,20 @@ occurrence %<>% mutate(nomenclaturalCode = "ICZN") # e.g. "ICZN"
 ```{r}
 occurrence %<>% 
     ##select(individualCount) %>%
-    mutate(occurrenceStatus = case_when(action_nl == 'Vastgesteld' & individualCount > 0 ~ "Present",
-                                        action_nl == 'Vastgesteld' & individualCount == 0 ~ "Absent",
-                                        action_nl == 'Gevangen' & individualCount > 0 ~ "Present",
-                                        action_nl == 'Gevangen' & individualCount == 0 ~ "Absent",
-                                        action_nl == 'Verwijderd' & individualCount > 0 ~ "Present",
-                                        action_nl == 'Verwijderd' & individualCount == 0 ~ "Absent",
-                                        action_nl == 'Geen vangst' & individualCount > 0 ~ "Present",
-                                        action_nl == 'Geen vangst' & individualCount == 0 ~ "Absent",
-                                        action_nl == 'Sporen' & individualCount > 0 ~ "Present",
-                                        action_nl == 'Sporen' & individualCount == 0 ~ "Absent",
-                                        action_nl == 'Hoeveelheid'& individualCount > 0 ~ "Present",
-                                        action_nl == 'Hoeveelheid'& individualCount == 0 ~ "Absent",
-                                        individualCount > 0 ~ "Present",
-                                        individualCount == 0 ~ "Absent",
-                                        is.na(action_nl) | is.na(individualCount) ~ "Absent"
+    mutate(dwc_occurrenceStatus = case_when(dwc_individualCount > 0 ~ "Present",
+                                        dwc_individualCount == 0 ~ "Absent",
+                                        is.na(dwc_individualCount) ~ "Absent"
                                                   
                                        ))
 head(occurrence, n = 5)
 ```
-
-```{r eval=FALSE, include=FALSE}
-
-occurrence %<>%
-        filter(eventDate > '2018-01-12' & occurrenceStatus == "Present" & scientificName == "Ondatra zibethicus") 
-        
-head (occurrence, n = 5 )
-
-```
-
-
-
-
 
 
 ## Post-processing
 
 ```{r}
 colnames(occurrence) <- str_remove(colnames(occurrence), "dwc_")
-##occurrence %<>% select(-c(disposition, etiket_ref, collection, scientificName)) %<>% #remove collection columns
-          ##  rename(scientificName = verbatimScientificName) 
+ 
 ```
 
 ```{r}
