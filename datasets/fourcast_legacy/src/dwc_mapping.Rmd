@@ -344,6 +344,11 @@ occurrence %<>% mutate(dwc_countryCode = "BE") # e.g. "Belgium = BE"
 
 ### municipality
 
+### verbatimLocality
+
+```{r}
+occurrence %<>% mutate(dwc_verbatimLocality = 'Site Name') 
+```
 
 ### verbatimcoordinates
 
@@ -422,9 +427,22 @@ head(occurrence, n = 5)
 
 ## Post-processing
 
+Only keep the Darwin Core columns:
+
+```{r}
+occurrence %<>% select(starts_with("dwc_"))
+```
+
+Drop the `dwc_` prefix:
+
 ```{r}
 colnames(occurrence) <- str_remove(colnames(occurrence), "dwc_")
- 
+```
+
+Preview data:
+
+```{r}
+occurrence %>% head()
 ```
 
 ```{r}
@@ -433,18 +451,6 @@ occurrence <- mutate_all(occurrence, as.character())
 
 Define the order of the output columns
 
-```{r}
-col_order <- c( "type","language","license","rightsHolder","accessRights","datasetID"
-               ,"institutionCode","datasetName","basisOfRecord","occurrenceID","recordedBy"
-               ,"individualCount","organismQuantity","organismQuantityType","occurrenceStatus","occurrenceRemarks"
-               ,"samplingProtocol","samplingEffort"
-               ,"eventDate","continent","countryCode","municipality"
-               ,"verbatimLatitude","verbatimLongitude","verbatimCoordinateSystem","verbatimSRS"
-               ,"decimalLatitude","decimalLongitude","geodeticDatum","coordinateUncertaintyInMeters"
-               ,"identifiedBy","scientificName","kingdom","scientificNameAuthorship","taxonRank","nomenclaturalCode"
-               )
-occurrence <- occurrence[, col_order]
-```
 
 Preview data:
 
@@ -455,7 +461,7 @@ occurrence %>% head()
 Save to CSV:
 
 ```{r}
-write_csv(occurrence, here::here("datasets", "mica-westvlaanderen-occurrences", "data", "processed", "occurrence.csv"), na = "")
+write_csv(occurrence, here::here("datasets", "fourcast_legacy", "data", "processed", "occurrence.csv"), na = "")
 ```
 
 
