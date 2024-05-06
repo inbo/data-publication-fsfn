@@ -448,12 +448,15 @@ Need to create an eventID based on name and site ID
 ```{r}
 occurrence %<>% mutate(dwc_formation = str_c(Site, dwc_eventDate))
 ```
+# identification
 
-### identifiedBy
+## identifiedBy
 
 ```{r}
 occurrence %<>% mutate(dwc_identifiedBy = 'Luc De Bruyn | Wim Jacobs | Frans Janssens')
 ```
+
+#taxon
 
 ### scientificName 
 
