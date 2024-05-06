@@ -145,8 +145,6 @@ occurrence <- input_data
 
 ## remove obsolete columns
 
-## filter for muskrat & bruine rat
-
 
 # Term mapping
 
@@ -212,12 +210,6 @@ occurrence %<>% mutate(dwc_accessRights = "http://www.inbo.be/en/norms-for-data-
 occurrence %<>% mutate(dwc_institutionCode = "INBO") # e.g. "INBO"
 ```
 
-### datasetName
-
-```{r}
-occurrence %<>% mutate(dwc_datasetName = "Forest soil classification - Collembola, Flanders, Belgium") # e.g. "Checklist of non-native freshwater fishes in Flanders, Belgium"
-```
-
 ### CollectionCode
 
 
@@ -226,6 +218,25 @@ occurrence %<>% mutate(dwc_collectionCode = "FOURCAST")
 ```
 
 
+
+### datasetName
+
+```{r}
+occurrence %<>% mutate(dwc_datasetName = "Forest soil classification - Collembola, Flanders, Belgium") # e.g. "Checklist of non-native freshwater fishes in Flanders, Belgium"
+```
+
+### ownerInstitutionCode
+
+```{r}
+occurrence %<>% mutate(dwc_ownerInstitutionCode = "INBO | Ugent | UAntwerp")
+```
+
+### CollectionCode
+
+
+```{r}
+occurrence %<>% mutate(dwc_collectionCode = "FOURCAST")
+```
 
 
 The following terms contain information about the taxon:
@@ -259,9 +270,11 @@ occurrence %<>% mutate(dwc_recordedBy = 'Luc De Bruyn | Wim Jacobs | Frans Janss
 ### individualCount
 
 ```{r}
-occurrence %<>%  rename(dwc_individualCount = 'count') 
+occurrence %<>%  mutate(dwc_individualCount = count) %<>%
+                 mutate(dwc_individualCount = ifelse(is.na(dwc_individualCount), 0, dwc_individualCount))
                 
 ```
+
 
 ```{r}
 
@@ -280,11 +293,45 @@ occurrence %<>%  rename(dwc_individualCount = 'count')
 
 ### sex
 
+### occurrenceStatus
+
+```{r}
+occurrence %<>% 
+    ##select(individualCount) %>%
+    mutate(dwc_occurrenceStatus = case_when(dwc_individualCount > 0 ~ "Present",
+                                        dwc_individualCount == 0 ~ "Absent",
+                                        is.na(dwc_individualCount) ~ "Absent" ))
+
+```
+
+
 ### lifeStage
 
 ### behavior
 
 ### occurrenceRemarks
+
+##event
+
+### eventDate
+
+
+```{r}
+occurrence %<>% mutate(dwc_eventDate = '1997-05')
+
+```
+
+#event
+## eventID
+
+Need to create an eventID based on name and site ID
+
+```{r}
+occurrence %<>% mutate(dwc_eventID = str_c(Site, dwc_eventDate))
+```
+
+## habitat
+
 
 
 ## samplingProtocol
@@ -302,30 +349,17 @@ occurrence %<>% mutate(dwc_samplingEffort = 'pitfall traps')
 
 ```
 
-### eventDate
 
 
-```{r}
-occurrence %<>% mutate(dwc_eventDate = '1997-05')
+# Location
 
-```
-
-
-### eventID
+### locationID
 
 Need to create an eventID based on name and site ID
 
 ```{r}
-occurrence %<>% mutate(dwc_eventID = str_c(Site, dwc_eventDate))
+occurrence %<>% mutate(dwc_licationID = Site)
 ```
-
-```{r}
-
-
-
-```
-
-# Location
 
 ```{r}
 occurrence %<>%
@@ -396,6 +430,25 @@ occurrence %<>% mutate(verbatimSRS = "Belgian Datum 1972")
 
 ### georeferenceRemarks
 
+# geologicalContext
+
+## formation
+
+
+```{r}
+occurrence %<>% mutate(dwc_formation = `Observation Region`)
+
+```
+
+
+### eventID
+
+Need to create an eventID based on name and site ID
+
+```{r}
+occurrence %<>% mutate(dwc_formation = str_c(Site, dwc_eventDate))
+```
+
 ### identifiedBy
 
 ```{r}
@@ -429,18 +482,6 @@ occurrence %<>% mutate(taxonRank = "species")
 occurrence %<>% mutate(nomenclaturalCode = "ICZN") # e.g. "ICZN"
 ```
 
-### occurrenceStatus
-
-```{r}
-occurrence %<>% 
-    ##select(individualCount) %>%
-    mutate(dwc_occurrenceStatus = case_when(dwc_individualCount > 0 ~ "Present",
-                                        dwc_individualCount == 0 ~ "Absent",
-                                        is.na(dwc_individualCount) ~ "Absent"
-                                                  
-                                       ))
-head(occurrence, n = 5)
-```
 
 
 ## Post-processing
