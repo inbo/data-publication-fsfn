@@ -45,12 +45,12 @@ Create a data frame `input_data1` & `input_data2` from the source data:
 
 
 ```{r}
-input_data1 <- read_excel(here::here("datasets", "fourcast_legacy","Collembola", "data", "raw", "collembola_BF_plots_mei1997_orig.xlsx"))
+input_data1 <- read_excel(here::here("datasets", "Collembola", "data", "raw", "collembola_BF_plots_mei1997_orig.xlsx"))
 
 ```
 
 ```{r}
-input_data2 <- read_excel(here::here("datasets", "fourcast_legacy","Collembola", "data", "raw", "EB_Site_Table.xlsx"))
+input_data2 <- read_excel(here::here("datasets", "Collembola", "data", "raw", "EB_Site_Table.xlsx"))
 
 ```
 
@@ -215,8 +215,18 @@ occurrence %<>% mutate(dwc_institutionCode = "INBO") # e.g. "INBO"
 ### datasetName
 
 ```{r}
-occurrence %<>% mutate(dwc_datasetName = "FOURCAST_legacy - Collembola, Belgium") # e.g. "Checklist of non-native freshwater fishes in Flanders, Belgium"
+occurrence %<>% mutate(dwc_datasetName = "Forest soil classification - Collembola, Flanders, Belgium") # e.g. "Checklist of non-native freshwater fishes in Flanders, Belgium"
 ```
+
+### CollectionCode
+
+
+```{r}
+occurrence %<>% mutate(dwc_collectionCode = "FOURCAST")
+```
+
+
+
 
 The following terms contain information about the taxon:
 
@@ -234,9 +244,11 @@ occurrence %<>% mutate(dwc_basisOfRecord = "HumanObservation")
 
 ```{r}
 occurrence %<>% mutate(occurrenceID = 'ID_row') %>%
-                mutate(dwc_occurrenceID = str_c("FOURCAST:COLLEMBOLA:", occurrenceID))
+                mutate(dwc_occurrenceID = str_c("SOIL:COLLEMBOLA:", occurrenceID))
   
 ```
+
+
 
 ### recordedBy
 
@@ -299,7 +311,13 @@ occurrence %<>% mutate(dwc_eventDate = '1997-05')
 ```
 
 
+### eventID
 
+Need to create an eventID based on name and site ID
+
+```{r}
+occurrence %<>% mutate(dwc_eventID = str_c(Site, dwc_eventDate))
+```
 
 ```{r}
 
