@@ -254,7 +254,7 @@ occurrence %<>% mutate(dwc_basisOfRecord = "HumanObservation")
 ### occurrenceID
 
 ```{r}
-occurrence %<>% mutate(occurrenceID = 'ID_row') %>%
+occurrence %<>% mutate(occurrenceID = row_number()) %<>%
                 mutate(dwc_occurrenceID = str_c("SOIL:COLLEMBOLA:", occurrenceID))
   
 ```
@@ -523,7 +523,7 @@ occurrence %>% head()
 Save to CSV:
 
 ```{r}
-write_csv(occurrence, here::here("datasets", "fourcast_legacy","Collembola", "data", "processed", "occurrence.csv"), na = "")
+write_csv(occurrence, here::here("datasets", "Collembola", "data", "processed", "occurrence.csv"), na = "")
 ```
 
 
