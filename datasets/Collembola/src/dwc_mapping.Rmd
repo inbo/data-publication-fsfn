@@ -137,10 +137,10 @@ We can safely substitute input_interim
 
 ## Pre-processing
 
-Create a dataframe occurrence data only 
+Create a dataframe EVENT data only 
 
 ```{r}
-occurrence <- input_data
+event <- input_data
 ```
 
 ## remove obsolete columns
@@ -237,6 +237,14 @@ occurrence %<>% mutate(dwc_ownerInstitutionCode = "INBO | Ugent | UAntwerp")
 ```{r}
 occurrence %<>% mutate(dwc_collectionCode = "FOURCAST")
 ```
+
+Create a dataframe OCCURRENCE data only 
+
+```{r}
+occurrence <- input_data
+```
+
+
 
 
 The following terms contain information about the taxon:
