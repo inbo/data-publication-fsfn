@@ -157,45 +157,36 @@ Start with record-level terms which contain metadata about the dataset (which is
 ### datasetID
 
 ```{r}
-occurrence %<>% mutate(dwc_datasetID = "https://doi.org/10.15468/XXXXX")
+event %<>% mutate(dwc_datasetID = "https://doi.org/10.15468/XXXXX")
 ```
-
-### add row numbers to genrate occurrenceID unique
-
-
-```{r}
-occurrence %<>% mutate(ID_row = row_number())
-```
-
-
 ### type
 
 ```{r}
-occurrence %<>% mutate(dwc_type = "Event")
+event %<>% mutate(dwc_type = "Event")
 ```
 
 ### language
 
 ```{r}
-occurrence %<>% mutate(dwc_language = "en") # e.g. "en"
+event %<>% mutate(dwc_language = "en") # e.g. "en"
 ```
 
 ### license
 
 ```{r}
-occurrence %<>% mutate(dwc_license = "http://creativecommons.org/publicdomain/zero/1.0/") 
+event %<>% mutate(dwc_license = "http://creativecommons.org/publicdomain/zero/1.0/") 
 # e.g. "http://creativecommons.org/publicdomain/zero/1.0/"
 ```
 
 ### rightsHolder
 
 ```{r}
-occurrence %<>% mutate(dwc_rightsHolder = "INBO") # e.g. "INBO"
+event %<>% mutate(dwc_rightsHolder = "INBO") # e.g. "INBO"
 ```
 ### accessRights
 
 ```{r}
-occurrence %<>% mutate(dwc_accessRights = "http://www.inbo.be/en/norms-for-data-use") 
+event %<>% mutate(dwc_accessRights = "http://www.inbo.be/en/norms-for-data-use") 
 ```
 
 ### datasetID
@@ -207,157 +198,61 @@ occurrence %<>% mutate(dwc_accessRights = "http://www.inbo.be/en/norms-for-data-
 ### institutionCode
 
 ```{r}
-occurrence %<>% mutate(dwc_institutionCode = "INBO") # e.g. "INBO"
+event %<>% mutate(dwc_institutionCode = "INBO") # e.g. "INBO"
 ```
 
 ### CollectionCode
 
 
 ```{r}
-occurrence %<>% mutate(dwc_collectionCode = "FOURCAST")
+event %<>% mutate(dwc_collectionCode = "FSFN")
 ```
-
 
 
 ### datasetName
 
 ```{r}
-occurrence %<>% mutate(dwc_datasetName = "Forest soil classification - Collembola, Flanders, Belgium") # e.g. "Checklist of non-native freshwater fishes in Flanders, Belgium"
+event %<>% mutate(dwc_datasetName = "FSFN: Forest soil classification - Collembola, Flanders, Belgium") # e.g. "Checklist of non-native freshwater fishes in Flanders, Belgium"
 ```
+
 
 ### ownerInstitutionCode
 
 ```{r}
-occurrence %<>% mutate(dwc_ownerInstitutionCode = "INBO | Ugent | UAntwerp")
+event %<>% mutate(dwc_ownerInstitutionCode = "INBO | Ugent | UAntwerp")
 ```
 
-### CollectionCode
-
-
-```{r}
-occurrence %<>% mutate(dwc_collectionCode = "FOURCAST")
-```
-
-Create a dataframe OCCURRENCE data only 
-
-```{r}
-occurrence <- input_data
-```
-
-
-
-
-The following terms contain information about the taxon:
-
-### basisOfRecord
-
-```{r}
-occurrence %<>% mutate(dwc_basisOfRecord = "HumanObservation")
-```
-
-### informationWithHeld
-
-### dataGeneralizations
-
-### occurrenceID
-
-```{r}
-occurrence %<>% mutate(occurrenceID = row_number()) %<>%
-                mutate(dwc_occurrenceID = str_c("SOIL:COLLEMBOLA:", occurrenceID))
-  
-```
-
-
-
-### recordedBy
-
-```{r}
-occurrence %<>% mutate(dwc_recordedBy = 'Luc De Bruyn | Wim Jacobs | Frans Janssens')
-```
-
-### individualCount
-
-```{r}
-occurrence %<>%  mutate(dwc_individualCount = count) %<>%
-                 mutate(dwc_individualCount = ifelse(is.na(dwc_individualCount), 0, dwc_individualCount))
-                
-```
-
-
-```{r}
-
-
-#occurrence$individualCount %<>% replace_na(0)
-```
-
-### organismQuantity
-
-
-
-
-### organismQuentityType
-
-
-
-### sex
-
-### occurrenceStatus
-
-```{r}
-occurrence %<>% 
-    ##select(individualCount) %>%
-    mutate(dwc_occurrenceStatus = case_when(dwc_individualCount > 0 ~ "Present",
-                                        dwc_individualCount == 0 ~ "Absent",
-                                        is.na(dwc_individualCount) ~ "Absent" ))
-
-```
-
-
-### lifeStage
-
-### behavior
-
-### occurrenceRemarks
-
-##event
 
 ### eventDate
 
 
 ```{r}
-occurrence %<>% mutate(dwc_eventDate = '1997-05')
+event %<>% mutate(dwc_eventDate = '1997-05')
 
 ```
 
-#event
-## eventID
 
-Need to create an eventID based on name and site ID
+### eventID
+
 
 ```{r}
-occurrence %<>% mutate(dwc_eventID = str_c(Site, dwc_eventDate))
+event %<>% mutate(dwc_eventID = str_c("SOIL:COLLEMBOLA:EV", dwc_eventDate, Site ))
 ```
-
-## habitat
-
-
 
 ## samplingProtocol
 
 
 ```{r}
-occurrence %<>% mutate(dwc_samplingProtocol = 'pitfall traps') 
+event %<>% mutate(dwc_samplingProtocol = 'pitfall traps') 
 
 ```
 
 ### samplingEffort
 
 ```{r}
-occurrence %<>% mutate(dwc_samplingEffort = 'pitfall traps')
+event %<>% mutate(dwc_samplingEffort = 'pitfall traps')
 
 ```
-
-
 
 # Location
 
@@ -366,11 +261,11 @@ occurrence %<>% mutate(dwc_samplingEffort = 'pitfall traps')
 Need to create an eventID based on name and site ID
 
 ```{r}
-occurrence %<>% mutate(dwc_licationID = Site)
+event %<>% mutate(dwc_locationID = Site)
 ```
 
 ```{r}
-occurrence %<>%
+event %<>%
   rename(dwc_decimalLongitude = Longitude) %>%
   rename(dwc_decimalLatitude = Latitude) %>%
   mutate(dwc_geodeticDatum = "WGS84") %>%
@@ -379,13 +274,13 @@ occurrence %<>%
 ```
 
 ```{r}
-occurrence %<>%
+event %<>%
   mutate(dwc_decimalLongitude = round(dwc_decimalLongitude, digits = 5)) %>%
   mutate(dwc_decimalLatitude = round(dwc_decimalLatitude, digits = 5))
 ```
 
 ```{r}
-occurrence %<>%   
+event %<>%   
    mutate(dwc_decimalLatitude = as.character(format(dwc_decimalLatitude, nsmall = 5))) %>%
    mutate(dwc_decimalLongitude = as.character(format(dwc_decimalLongitude, nsmall = 5)))
 ```
@@ -393,13 +288,13 @@ occurrence %<>%
 ### continent
 
 ```{r}
-occurrence %<>% mutate(continent = "Europe") # e.g. "Belgium = BE"
+event %<>% mutate(dwc_continent = "Europe") # e.g. "Belgium = BE"
 ```
 
 ### countryCode
 
 ```{r}
-occurrence %<>% mutate(dwc_countryCode = "BE") # e.g. "Belgium = BE"
+event %<>% mutate(dwc_countryCode = "BE") # e.g. "Belgium = BE"
 ```
 
 ### municipality
@@ -407,7 +302,7 @@ occurrence %<>% mutate(dwc_countryCode = "BE") # e.g. "Belgium = BE"
 ### verbatimLocality
 
 ```{r}
-occurrence %<>% mutate(dwc_verbatimLocality = 'Site Name') 
+event %<>% mutate(dwc_verbatimLocality = 'Site Name') 
 ```
 
 ### verbatimcoordinates
@@ -419,13 +314,13 @@ occurrence %<>% mutate(dwc_verbatimLocality = 'Site Name')
 ### verbatimcoordinatesystem
 
 ```{r}
-occurrence %<>% mutate(verbatimcoordinatesystem = "Lambert coordinates") # 
+event %<>% mutate(dwc_verbatimcoordinatesystem = "Lambert coordinates") # 
 ```
 
 ### verbatimSRS
 
 ```{r}
-occurrence %<>% mutate(verbatimSRS = "Belgian Datum 1972")
+event %<>% mutate(dwc_verbatimSRS = "Belgian Datum 1972")
 ```
 
 ### decimalLatitude
@@ -444,18 +339,122 @@ occurrence %<>% mutate(verbatimSRS = "Belgian Datum 1972")
 
 
 ```{r}
-occurrence %<>% mutate(dwc_formation = `Observation Region`)
+event %<>% mutate(dwc_formation = `Observation Region`)
+
+```
+## Post-processing
+
+Only keep the Darwin Core columns:
+
+```{r}
+event %<>% select(starts_with("dwc_"))
+```
+
+Drop the `dwc_` prefix:
+
+```{r}
+colnames(event) <- str_remove(colnames(event), "dwc_")
+```
+
+Preview data:
+
+```{r}
+event %>% head()
+```
+
+```{r}
+event <- mutate_all(event, as.character())
+```
+
+```{r}
+event %<>% unique()
+```
+
+Save to CSV:
+
+```{r}
+write_csv(event, here::here("datasets", "Collembola", "data", "processed", "event.csv"), na = "")
+```
+
+
+
+
+Create a dataframe OCCURRENCE data only 
+
+```{r}
+occurrence <- input_data
+```
+
+
+The following terms contain information about the taxon:
+
+### add row numbers to genrate occurrenceID unique
+
+
+```{r}
+occurrence %<>% mutate(ID_row = row_number())
+```
+
+
+### basisOfRecord
+
+
+```{r}
+occurrence %<>% mutate(dwc_basisOfRecord = "HumanObservation")
+```
+
+### informationWithHeld
+
+### dataGeneralizations
+
+### occurrenceID
+
+```{r}
+occurrence %<>% mutate(occurrenceID = row_number()) %<>%
+                mutate(dwc_occurrenceID = str_c("SOIL:COLLEMBOLA:", occurrenceID))
+  
+```
+
+
+### recordedBy
+
+```{r}
+occurrence %<>% mutate(dwc_recordedBy = 'Luc De Bruyn | Wim Jacobs | Frans Janssens')
+```
+
+### individualCount
+
+```{r}
+occurrence %<>%  mutate(dwc_individualCount = count) %<>%
+                 mutate(dwc_individualCount = ifelse(is.na(dwc_individualCount), 0, dwc_individualCount))
+                
+```
+
+
+### occurrenceStatus
+
+```{r}
+occurrence %<>% 
+    ##select(individualCount) %>%
+    mutate(dwc_occurrenceStatus = case_when(dwc_individualCount > 0 ~ "Present",
+                                        dwc_individualCount == 0 ~ "Absent",
+                                        is.na(dwc_individualCount) ~ "Absent" ))
 
 ```
 
 
-### eventID
+## eventID
 
 Need to create an eventID based on name and site ID
 
 ```{r}
-occurrence %<>% mutate(dwc_formation = str_c(Site, dwc_eventDate))
+
+occurrence %<>% mutate(dwc_eventID = str_c("SOIL:COLLEMBOLA:EV", event$dwc_eventDate, Site ))
 ```
+
+
+
+
 # identification
 
 ## identifiedBy
@@ -538,7 +537,7 @@ write_csv(occurrence, here::here("datasets", "Collembola", "data", "processed", 
 Visualize data on a map
 
 ```{r}
-occurrenceMap <- occurrence
+occurrenceMap <- event
 ```
 
 ```{r}
