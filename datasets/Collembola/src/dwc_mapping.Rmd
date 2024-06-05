@@ -235,6 +235,8 @@ event %<>% mutate(dwc_eventDate = '1997-05')
 ### eventID
 
 
+
+
 ```{r}
 event %<>% mutate(dwc_eventID = str_c("SOIL:COLLEMBOLA:EV", dwc_eventDate, Site ))
 ```
@@ -448,11 +450,17 @@ occurrence %<>%
 Need to create an eventID based on name and site ID
 
 ```{r}
+occurrence %<>% mutate(dwc_eventDate = '1997-05')
 
-occurrence %<>% mutate(dwc_eventID = str_c("SOIL:COLLEMBOLA:EV", event$dwc_eventDate, Site ))
 ```
 
 
+```{r}
+
+occurrence %<>% mutate(dwc_eventID = str_c("SOIL:COLLEMBOLA:EV", dwc_eventDate, Site ))
+```
+
+mutate(dwc_eventID = str_c("SOIL:COLLEMBOLA:EV", dwc_eventDate, Site ))
 
 
 # identification
@@ -462,6 +470,13 @@ occurrence %<>% mutate(dwc_eventID = str_c("SOIL:COLLEMBOLA:EV", event$dwc_event
 ```{r}
 occurrence %<>% mutate(dwc_identifiedBy = 'Luc De Bruyn | Wim Jacobs | Frans Janssens')
 ```
+### CollectionCode
+
+
+```{r}
+occurrence %<>% mutate(dwc_collectionCode = "FSFN")
+```
+
 
 #taxon
 
