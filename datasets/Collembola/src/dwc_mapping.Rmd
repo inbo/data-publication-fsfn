@@ -1,6 +1,6 @@
 ---
 title: "Darwin Core Mapping"
-subtitle: "FOURCAST legacy data publication"
+subtitle: "FOURCAST legacy data publication: Collembola"
 author: "Dimitri Brosens"
 date: "`r Sys.Date()`"
 output:
@@ -157,7 +157,7 @@ Start with record-level terms which contain metadata about the dataset (which is
 ### datasetID
 
 ```{r}
-event %<>% mutate(dwc_datasetID = "https://doi.org/10.15468/XXXXX")
+event %<>% mutate(dwc_datasetID = "https://doi.org/10.15468/tkj5tj")
 ```
 ### type
 
@@ -238,7 +238,7 @@ event %<>% mutate(dwc_eventDate = '1997-05')
 
 
 ```{r}
-event %<>% mutate(dwc_eventID = str_c("SOIL:COLLEMBOLA:EV", dwc_eventDate, Site ))
+event %<>% mutate(dwc_eventID = str_c("SOIL:FSFN:EV:", dwc_eventDate, Site ))
 ```
 
 ## samplingProtocol
@@ -413,7 +413,7 @@ occurrence %<>% mutate(dwc_basisOfRecord = "HumanObservation")
 
 ```{r}
 occurrence %<>% mutate(occurrenceID = row_number()) %<>%
-                mutate(dwc_occurrenceID = str_c("SOIL:COLLEMBOLA:", occurrenceID))
+                mutate(dwc_occurrenceID = str_c("SOIL:COLLEMBOLA:OCC:", occurrenceID))
   
 ```
 
@@ -457,7 +457,7 @@ occurrence %<>% mutate(dwc_eventDate = '1997-05')
 
 ```{r}
 
-occurrence %<>% mutate(dwc_eventID = str_c("SOIL:COLLEMBOLA:EV", dwc_eventDate, Site ))
+occurrence %<>% mutate(dwc_eventID = str_c("SOIL:FSFN:EV:", dwc_eventDate, Site ))
 ```
 
 mutate(dwc_eventID = str_c("SOIL:COLLEMBOLA:EV", dwc_eventDate, Site ))
