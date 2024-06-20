@@ -485,11 +485,6 @@ occurrence %<>% mutate(dwc_collectionCode = "FSFN")
 ```{r}
 occurrence %<>% mutate(dwc_scientificName = scientificName)
 ```
-```{r}
-occurrence %<>% filter(dwc_scientificName != 'Som')
-```
-
-
 
 ### kingdom
 
