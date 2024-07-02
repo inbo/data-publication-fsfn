@@ -421,7 +421,7 @@ occurrence %<>% mutate(occurrenceID = row_number()) %<>%
 ### recordedBy
 
 ```{r}
-occurrence %<>% mutate(dwc_recordedBy = 'Luc De Bruyn | Wim Jacobs | Frans Janssens')
+occurrence %<>% mutate(dwc_recordedBy = 'Luc De Bruyn | Sofie Thys | Mihaly Foldvari | Patrick Grootaert')
 ```
 
 ### individualCount
@@ -468,7 +468,7 @@ mutate(dwc_eventID = str_c("SOIL:FSFN:EV", dwc_eventDate, Site ))
 ## identifiedBy
 
 ```{r}
-occurrence %<>% mutate(dwc_identifiedBy = 'Bart De Schutter | Jozef Coosemans	')
+occurrence %<>% mutate(dwc_identifiedBy = 'Luc De Bruyn | Sofie Thys| Mihaly Foldvari | Patrick Grootaert')
 ```
 ### CollectionCode
 
