@@ -413,7 +413,7 @@ occurrence %<>% mutate(dwc_basisOfRecord = "HumanObservation")
 
 ```{r}
 occurrence %<>% mutate(occurrenceID = row_number()) %<>%
-                mutate(dwc_occurrenceID = str_c("SOIL:ISOLODA:", occurrenceID))
+                mutate(dwc_occurrenceID = str_c("SOIL:ISOPODA:", occurrenceID))
   
 ```
 
@@ -421,7 +421,7 @@ occurrence %<>% mutate(occurrenceID = row_number()) %<>%
 ### recordedBy
 
 ```{r}
-occurrence %<>% mutate(dwc_recordedBy = 'Luc De Bruyn | Wim Jacobs | Frans Janssens')
+occurrence %<>% mutate(dwc_recordedBy = 'Nathalie Devaere')
 ```
 
 ### individualCount
@@ -468,7 +468,7 @@ mutate(dwc_eventID = str_c("SOIL:FSFN:EV", dwc_eventDate, Site ))
 ## identifiedBy
 
 ```{r}
-occurrence %<>% mutate(dwc_identifiedBy = 'Bart De Schutter | Jozef Coosemans	')
+occurrence %<>% mutate(dwc_identifiedBy = 'Nathalie Devaere')
 ```
 ### CollectionCode
 
