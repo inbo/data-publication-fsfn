@@ -212,7 +212,7 @@ event %<>% mutate(dwc_collectionCode = "FSFN")
 ### datasetName
 
 ```{r}
-event %<>% mutate(dwc_datasetName = "FSFN: Forest soil classification - Nematoda, Flanders, Belgium") # e.g. "Checklist of non-native freshwater fishes in Flanders, Belgium"
+event %<>% mutate(dwc_datasetName = "FSFN: Forest soil classification - Carabidae, Flanders, Belgium") # e.g. "Checklist of non-native freshwater fishes in Flanders, Belgium"
 ```
 
 
@@ -375,7 +375,7 @@ event %<>% unique()
 Save to CSV:
 
 ```{r}
-write_csv(event, here::here("datasets", "nematoda", "data", "processed", "event.csv"), na = "")
+write_csv(event, here::here("datasets", "carabidae", "data", "processed", "event.csv"), na = "")
 ```
 
 
@@ -413,7 +413,7 @@ occurrence %<>% mutate(dwc_basisOfRecord = "HumanObservation")
 
 ```{r}
 occurrence %<>% mutate(occurrenceID = row_number()) %<>%
-                mutate(dwc_occurrenceID = str_c("SOIL:NEMATODA:", occurrenceID))
+                mutate(dwc_occurrenceID = str_c("SOIL:CARABIDAE:", occurrenceID))
   
 ```
 
@@ -421,7 +421,7 @@ occurrence %<>% mutate(occurrenceID = row_number()) %<>%
 ### recordedBy
 
 ```{r}
-occurrence %<>% mutate(dwc_recordedBy = 'Luc De Bruyn | Wim Jacobs | Frans Janssens')
+occurrence %<>% mutate(dwc_recordedBy = 'Konjev Desender ')
 ```
 
 ### individualCount
@@ -468,7 +468,7 @@ mutate(dwc_eventID = str_c("SOIL:FSFN:EV", dwc_eventDate, Site ))
 ## identifiedBy
 
 ```{r}
-occurrence %<>% mutate(dwc_identifiedBy = 'Bart De Schutter | Jozef Coosemans	')
+occurrence %<>% mutate(dwc_identifiedBy = 'Konjev Desender')
 ```
 ### CollectionCode
 
@@ -545,7 +545,7 @@ occurrence %>% head()
 Save to CSV:
 
 ```{r}
-write_csv(occurrence, here::here("datasets", "nematoda", "data", "processed", "occurrence.csv"), na = "")
+write_csv(occurrence, here::here("datasets", "carabidae", "data", "processed", "occurrence.csv"), na = "")
 ```
 
 
