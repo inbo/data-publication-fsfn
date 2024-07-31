@@ -245,14 +245,14 @@ event %<>% mutate(dwc_eventID = str_c("SOIL:FSFN:EV:", dwc_eventDate, Site ))
 
 
 ```{r}
-event %<>% mutate(dwc_samplingProtocol = 'observation') 
+event %<>% mutate(dwc_samplingProtocol = 'pitfall trap') 
 
 ```
 
 ### samplingEffort
 
 ```{r}
-event %<>% mutate(dwc_samplingEffort = 'area search')
+event %<>% mutate(dwc_samplingEffort = 'pitfall trap')
 
 ```
 
@@ -421,7 +421,7 @@ occurrence %<>% mutate(occurrenceID = row_number()) %<>%
 ### recordedBy
 
 ```{r}
-occurrence %<>% mutate(dwc_recordedBy = 'Domir De Bakker| Konjev Desender | Frederik Hendrickx')
+occurrence %<>% mutate(dwc_recordedBy = 'Luc De Bruyn | Sofie Thys | Luc Verlinden')
 ```
 
 ### individualCount
@@ -468,7 +468,7 @@ mutate(dwc_eventID = str_c("SOIL:FSFN:EV", dwc_eventDate, Site ))
 ## identifiedBy
 
 ```{r}
-occurrence %<>% mutate(dwc_identifiedBy = 'Domir De Bakker| Konjev Desender | Frederik Hendrickx')
+occurrence %<>% mutate(dwc_identifiedBy = '')Luc De Bruyn | Sofie Thys | Luc Verlinden
 ```
 ### CollectionCode
 
@@ -489,7 +489,7 @@ occurrence %<>% mutate(dwc_scientificName = scientificName)
 ### kingdom
 
 ```{r}
-occurrence %<>% mutate(dwc_kingdom = "Plantae")
+occurrence %<>% mutate(dwc_kingdom = "Animalia")
 ```
 
 ### scientificNameAuthorship
