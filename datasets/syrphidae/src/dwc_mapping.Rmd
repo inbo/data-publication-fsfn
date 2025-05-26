@@ -249,12 +249,7 @@ event %<>% mutate(dwc_samplingProtocol = 'pitfall trap')
 
 ```
 
-### samplingEffort
 
-```{r}
-event %<>% mutate(dwc_samplingEffort = 'pitfall trap')
-
-```
 
 # Location
 
@@ -301,10 +296,10 @@ event %<>% mutate(dwc_countryCode = "BE") # e.g. "Belgium = BE"
 
 ### municipality
 
-### verbatimLocality
+### locality
 
 ```{r}
-event %<>% mutate(dwc_verbatimLocality = 'Site Name') 
+event %<>% mutate(dwc_locality = `Observation Site`) 
 ```
 
 ### verbatimcoordinates
