@@ -468,7 +468,7 @@ mutate(dwc_eventID = str_c("SOIL:FSFN:EV", dwc_eventDate, Site ))
 ## identifiedBy
 
 ```{r}
-occurrence %<>% mutate(dwc_identifiedBy = '')Luc De Bruyn | Sofie Thys | Luc Verlinden
+occurrence %<>% mutate(dwc_identifiedBy = 'Luc De Bruyn | Sofie Thys | Luc Verlinden')
 ```
 ### CollectionCode
 
@@ -483,7 +483,12 @@ occurrence %<>% mutate(dwc_collectionCode = "FSFN")
 ### scientificName 
 
 ```{r}
-occurrence %<>% mutate(dwc_scientificName = scientificName)
+occurrence %<>% mutate(
+  dwc_scientificName = case_when(
+    scientificName == "Pipiza luteilabris" ~ "Pipiza luteitarsis",
+    TRUE ~ scientificName
+  )
+)
 ```
 
 ### kingdom
