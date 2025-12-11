@@ -310,13 +310,13 @@ event %<>% mutate(dwc_locality = `Observation Site`)
 ### verbatimcoordinatesystem
 
 ```{r}
-event %<>% mutate(dwc_verbatimcoordinatesystem = "Lambert coordinates") # 
+event %<>% mutate(dwc_verbatimcoordinatesystem = "Belgian Lambert 72") # 
 ```
 
 ### verbatimSRS
 
 ```{r}
-event %<>% mutate(dwc_verbatimSRS = "Belgian Datum 1972")
+event %<>% mutate(dwc_verbatimSRS = "Belgium Date 1972")
 ```
 
 ### decimalLatitude
