@@ -465,6 +465,13 @@ mutate(dwc_eventID = str_c("SOIL:COLLEMBOLA:EV", dwc_eventDate, Site ))
 ```{r}
 occurrence %<>% mutate(dwc_identifiedBy = 'Luc De Bruyn | Wim Jacobs | Frans Janssens')
 ```
+```{r}
+occurrence %<>% mutate(dwc_identificationVerificationStatus = 'validated')
+```
+
+
+
+
 ### CollectionCode
 
 

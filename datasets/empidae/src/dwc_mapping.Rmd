@@ -424,6 +424,12 @@ occurrence %<>% mutate(occurrenceID = row_number()) %<>%
 occurrence %<>% mutate(dwc_recordedBy = 'Luc De Bruyn | Sofie Thys | Mihaly Foldvari | Patrick Grootaert')
 ```
 
+```{r}
+occurrence %<>% mutate(dwc_identificationVerificationStatus = 'validated')
+```
+
+
+
 ### individualCount
 
 ```{r}
