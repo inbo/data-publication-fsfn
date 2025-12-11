@@ -192,7 +192,7 @@ event %<>% mutate(dwc_accessRights = "http://www.inbo.be/en/norms-for-data-use")
 ### datasetID
 
 ```{r}
-#occurrence %<>% mutate(datasetID = "insert doi") 
+#occurrence %<>% mutate(datasetID = "https://doi.org/10.15468/tkj5tj") 
 ```
 
 ### institutionCode
@@ -249,12 +249,7 @@ event %<>% mutate(dwc_samplingProtocol = 'pitfall traps')
 
 ```
 
-### samplingEffort
 
-```{r}
-event %<>% mutate(dwc_samplingEffort = 'pitfall traps')
-
-```
 
 # Location
 
@@ -301,10 +296,10 @@ event %<>% mutate(dwc_countryCode = "BE") # e.g. "Belgium = BE"
 
 ### municipality
 
-### verbatimLocality
+### locality
 
 ```{r}
-event %<>% mutate(dwc_verbatimLocality = 'Site Name') 
+event %<>% mutate(dwc_locality = `Observation Site`) 
 ```
 
 ### verbatimcoordinates
