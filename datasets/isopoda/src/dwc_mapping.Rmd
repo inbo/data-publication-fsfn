@@ -207,7 +207,11 @@ event %<>% mutate(dwc_institutionCode = "INBO") # e.g. "INBO"
 ```{r}
 event %<>% mutate(dwc_collectionCode = "FSFN")
 ```
+## identificationVerificationStatus
 
+```{r}
+occurrence %<>% mutate(dwc_identificationVerificationStatus = 'validated')
+```
 
 ### datasetName
 
@@ -470,6 +474,11 @@ mutate(dwc_eventID = str_c("SOIL:FSFN:EV", dwc_eventDate, Site ))
 ```{r}
 occurrence %<>% mutate(dwc_identifiedBy = 'Nathalie Devaere')
 ```
+
+```{r}
+occurrence %<>% mutate(dwc_identificationVerificationStatus = 'validated')
+```
+
 ### CollectionCode
 
 

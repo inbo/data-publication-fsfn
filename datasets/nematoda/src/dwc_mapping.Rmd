@@ -470,6 +470,14 @@ mutate(dwc_eventID = str_c("SOIL:FSFN:EV", dwc_eventDate, Site ))
 ```{r}
 occurrence %<>% mutate(dwc_identifiedBy = 'Bart De Schutter | Jozef Coosemans	')
 ```
+
+## identificationVerificationStatus
+
+```{r}
+occurrence %<>% mutate(dwc_identificationVerificationStatus = 'validated')
+```
+
+
 ### CollectionCode
 
 

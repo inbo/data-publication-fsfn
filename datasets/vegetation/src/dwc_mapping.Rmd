@@ -470,6 +470,11 @@ mutate(dwc_eventID = str_c("SOIL:FSFN:EV", dwc_eventDate, Site ))
 ```{r}
 occurrence %<>% mutate(dwc_identifiedBy = 'Domir De Bakker| Konjev Desender | Frederik Hendrickx')
 ```
+## identificationVerificationStatus
+
+```{r}
+occurrence %<>% mutate(dwc_identificationVerificationStatus = 'validated')
+```
 ### CollectionCode
 
 

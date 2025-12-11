@@ -465,6 +465,14 @@ mutate(dwc_eventID = str_c("SOIL:FSFN:EV", dwc_eventDate, Site ))
 ```{r}
 occurrence %<>% mutate(dwc_identifiedBy = 'Luc De Bruyn | Sofie Thys | Luc Verlinden')
 ```
+
+## identificationVerificationStatus
+
+```{r}
+occurrence %<>% mutate(dwc_identificationVerificationStatus = 'validated')
+```
+
+
 ### CollectionCode
 
 
